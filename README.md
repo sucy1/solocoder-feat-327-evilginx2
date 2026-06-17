@@ -1,92 +1,100 @@
 <p align="center">
-  <img alt="Evilginx2 Logo" src="https://raw.githubusercontent.com/kgretzky/evilginx2/img/media/evilginx2-logo-512.png" height="160" />
+  <img alt="Evilginx2 Logo" src="https://raw.githubusercontent.com/kgretzky/evilginx2/master/media/img/evilginx2-logo-512.png" height="160" />
   <p align="center">
-    <img alt="Evilginx2 Title" src="https://raw.githubusercontent.com/kgretzky/evilginx2/img/media/evilginx2-title-black-512.png" height="140" />
+    <img alt="Evilginx2 Title" src="https://raw.githubusercontent.com/kgretzky/evilginx2/master/media/img/evilginx2-title-black-512.png" height="60" />
   </p>
 </p>
 
-**evilginx2** is a man-in-the-middle attack framework used for phishing login credentials along with session cookies, which in turn allows to bypass 2-factor authentication protections.
+# Evilginx 3.0
+
+**Evilginx** is a man-in-the-middle attack framework used for phishing login credentials along with session cookies, which in turn allows to bypass 2-factor authentication protection.
 
 This tool is a successor to [Evilginx](https://github.com/kgretzky/evilginx), released in 2017, which used a custom version of nginx HTTP server to provide man-in-the-middle functionality to act as a proxy between a browser and phished website.
 Present version is fully written in GO as a standalone application, which implements its own HTTP and DNS server, making it extremely easy to set up and use.
+
+<p align="center">
+  <img alt="Screenshot" src="https://raw.githubusercontent.com/kgretzky/evilginx2/master/media/img/screen.png" height="320" />
+</p>
 
 ## Disclaimer
 
 I am very much aware that Evilginx can be used for nefarious purposes. This work is merely a demonstration of what adept attackers can do. It is the defender's responsibility to take such attacks into consideration and find ways to protect their users against this type of phishing attacks. Evilginx should be used only in legitimate penetration testing assignments with written permission from to-be-phished parties.
 
-## Installation
+## Evilginx Pro is now available!
 
-You can either use a [precompiled binary package](https://github.com/kgretzky/evilginx2/releases) for your architecture or you can compile **evilginx2** from source.
+This is it! After over two years of development, countless delays, and hundreds of manual company verifications, concluded with multiple hurdles related to export regulations, [Evilginx Pro is finally live!](https://evilginx.com)
 
-You will need an external server where you'll host your **evilginx2** installation. I personally recommend Digital Ocean and if you follow this referral link, you will get an extra $10 to spend on servers for free: [Digital Ocean VPS with $10 free credit to spend](https://m.do.co/c/50338abc7ffe). Evilginx runs very well on the cheapest Debian 8 VPS.
+<p align="center">
+  <a href="https://evilginx.com"><img alt="Evilginx Mastery" src="https://breakdev.org/content/images/size/w2000/2025/03/evilginx_pro_release_cover.png" height="320" /></a>
+</p>
 
-#### Installing from source
+Evilginx Pro is the fruit of a passion I've had for a long time in developing offensive security tools for cybersecurity enthusiasts. The journey has just begun, and now that the product is officially released, I can focus on making it even better by implementing all the ideas I've planned for it.
 
-In order to compile from source, make sure you have installed **GO compiler** of version at least **>= 1.10.0** (get it from [here](https://golang.org/doc/install)) and that `$GOPATH` environment variable is set up properly (def. `$HOME/go`). Then follow these instructions:
+### Key features:
 
-```
-go get -u github.com/kgretzky/evilginx2
-cd $GOPATH/src/github.com/kgretzky/evilginx2 (if $GOPATH is not set, try $HOME/go)
-make all
-```
+- Out-of-the-box **phishing detection evasion** (including Chrome's Enchanced Browser Protection)
+- Tested and maintained **official phishlets database**
+- **Botguard** to **prevent bot traffic** by default (same concept as Cloudflare Turnstile)
+- **Evilpuppet** for advanced phishing capability (Google)
+- External **DNS providers** with multi-domain support
+- **Website spoofing** for unauthorized requests
+- **JavaScript** & **HTML obfuscation**
+- **Wildcard TLS certificates**
+- **Automated** server deployment
+- **SQLite** database support
 
-Instructions above can also be used to update **evilginx2** to latest version.
+Find out more on the [official release blog post](https://breakdev.org/evilginx-pro-release/).
 
-#### Installing from precompiled binary packages
+## Evilginx Mastery Training Course
 
-Grab the package you want from [here](https://github.com/kgretzky/evilginx2/releases) and drop it on your box. Then do:
-```
-tar zxvf <package_name>.tar.gz
-cd <package_name>
-make all
-```
+If you want everything about reverse proxy phishing with **Evilginx** - check out my [Evilginx Mastery](https://academy.breakdev.org/evilginx-mastery) course!
 
-## Usage
+<p align="center">
+  <a href="https://academy.breakdev.org/evilginx-mastery"><img alt="Evilginx Mastery" src="https://raw.githubusercontent.com/kgretzky/evilginx2/master/media/img/evilginx_mastery.jpg" height="320" /></a>
+</p>
 
-Type:
-```
-evilginx
-```
+Learn everything about the latest methods of phishing, using reverse proxying to bypass Multi-Factor Authentication. Learn to think like an attacker, during your red team engagements, and become the master of phishing with Evilginx.
 
-You should see **evilginx2** logo with a prompt to enter commands. Type `help` or `help <command>` if you want to see available commands or more detailed information on them.
+Grab it here:
+https://academy.breakdev.org/evilginx-mastery
 
-## Getting started
+## Official Gophish integration
 
-To get up and running, you need to first do some setting up.
+If you'd like to use Gophish to send out phishing links compatible with Evilginx, please use the official Gophish integration with Evilginx 3.3.
+You can find the custom version here in the forked repository: [Gophish with Evilginx integration](https://github.com/kgretzky/gophish/)
 
-At this point I assume, you've already registered a domain (let's call it `yourdomain.com`) and you set up the nameservers (both `ns1` and `ns2`) in your domain provider's admin panel to point to your server's IP (e.g. 10.0.0.1):
-```
-ns1.yourdomain.com = 10.0.0.1
-ns2.yourdomain.com = 10.0.0.1
-```
+If you want to learn more about how to set it up, please follow the instructions in [this blog post](https://breakdev.org/evilginx-3-3-go-phish/)
 
-Set up your server's domain and IP using following commands:
-```
-config domain yourdomain.com
-config ip 10.0.0.1
-```
+## Write-ups
 
-Now you can set up the phishlet you want to use. For the sake of this short guide, we will use a LinkedIn phishlet. Set up the hostname for the phishlet (it must contain your domain obviously):
-```
-phishlet hostname linkedin my.phishing.hostname.yourdomain.com
-```
+If you want to learn more about reverse proxy phishing, I've published extensive blog posts about **Evilginx** here:
 
-And now you can `enable` the phishlet, which will initiate automatic retrieval of LetsEncrypt SSL/TLS certificates if none are locally found for the hostname you picked:
-```
-phishlet enable linkedin
-```
+[Evilginx 2.0 - Release](https://breakdev.org/evilginx-2-next-generation-of-phishing-2fa-tokens)
 
-Your phishing site is now live. Think of the URL, you want the victim to be redirected to on successful login and get the phishing URL like this (victim will be redirected to `https://www.google.com`):
-```
-phishlet get-url linkedin https://www.google.com
-```
+[Evilginx 2.1 - First Update](https://breakdev.org/evilginx-2-1-the-first-post-release-update/)
 
-Running phishlets will only respond to tokenized links, so any scanners who scan your main domain will be redirected to URL specified as `redirect_url` under `config`. If you want to hide your phishlet and make it not respond even to valid tokenized phishing URLs, use `phishlet hide/unhide <phishlet>` command.
+[Evilginx 2.2 - Jolly Winter Update](https://breakdev.org/evilginx-2-2-jolly-winter-update/)
 
-## Credits
+[Evilginx 2.3 - Phisherman's Dream](https://breakdev.org/evilginx-2-3-phishermans-dream/)
 
-Huge thanks to Simone Margaritelli ([@evilsocket](https://twitter.com/evilsocket)) for [bettercap](https://github.com/bettercap/bettercap) and inspiring me to learn GO and rewrite the tool in that language!
+[Evilginx 2.4 - Gone Phishing](https://breakdev.org/evilginx-2-4-gone-phishing/)
+
+[Evilginx 3.0](https://breakdev.org/evilginx-3-0-evilginx-mastery/)
+
+[Evilginx 3.2](https://breakdev.org/evilginx-3-2/)
+
+[Evilginx 3.3](https://breakdev.org/evilginx-3-3-go-phish/)
+
+## Help
+
+In case you want to learn how to install and use **Evilginx**, please refer to online documentation available at:
+
+https://help.evilginx.com
+
+## Support
+
+I DO NOT offer support for providing or creating phishlets. I will also NOT help you with creation of your own phishlets. Please look for ready-to-use phishlets, provided by other people.
 
 ## License
 
-**evilginx2** is made by Kuba Gretzky ([@mrgretzky](https://twitter.com/mrgretzky)) and it's released under GPL3 license.
+**evilginx2** is made by Kuba Gretzky ([@mrgretzky](https://twitter.com/mrgretzky)) and it's released under BSD-3 license.
